@@ -38,6 +38,37 @@ A full-stack web application to help users monitor and improve their daily healt
 - npm (comes with Node.js)
 - MongoDB Atlas account or local MongoDB server
 
+
+How others install dependencies
+When someone clones your repo:
+
+They get the package.json and package-lock.json files.
+They run:
+ copy
+bash
+
+npm install
+This automatically downloads and installs all the required dependencies to node_modules.
+How to ensure node_modules is excluded
+Add node_modules to your .gitignore file (usually already present in most Node.js projects):
+
+ copy
+javascript
+
+node_modules/
+This prevents accidentally committing node_modules to your Git repository.
+
+Summary for README install instructions
+In your README, instruct users to:
+
+ copy
+bash
+
+npm install
+to install all dependencies based on the manifest files.
+
+If you want, I can help generate .gitignore and README instructions to reflect this best practice!
+
 Using the Application
 Open your browser and go to http://localhost:3000.
 Register a new account or log in with an existing user.
