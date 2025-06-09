@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Goals</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body class="bg-white text-gray-700 min-h-screen flex flex-col font-sans">
+
+    <!-- Header: Sticky Nav -->
+    <header class="sticky top-0 bg-white shadow-lg z-30" role="banner">
+        <nav class="max-w-[1200px] mx-auto px-6 py-4 flex items-center justify-between" aria-label="Primary Navigation">
+            <div class="font-extrabold text-4xl text-gray-900 select-none flex items-center space-x-3">
+                <img src="logo.svg" alt="Logo" class="h-18 w-20 object-contain" />
+                <span>Goals</span>
+            </div>
+            <ul class="hidden md:flex space-x-10 text-gray-600 font-semibold" role="list">
+                <li><a href="#input"
+                        class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">Input</a>
+                </li>
+                <li><a href="#score"
+                        class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">Score</a>
+                </li>
+                <li><a href="#challenges"
+                        class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">Challenges</a>
+                </li>
+                <li><a href="#achievements"
+                        class="hover:text-blue-600 transition focus:outline-none focus:ring-2 focus:ring-blue-300 rounded">Achievements</a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="flex-grow max-w-[1200px] mx-auto gap-8 py-16" role="main" style="display:flex; flex-wrap: nowrap;">
+        <!-- Sidebar Calendar -->
+        <aside id="calendarSidebar" aria-label="Monthly Daily Scores Calendar"
+            class="animate-fadeIn shadow-lg rounded-3xl p-6 bg-white">
+            <h3 id="calendarMonthYear" class="select-none text-xl font-semibold mb-4">Loading...</h3>
+            <div class="calendar-grid" role="grid" aria-rowcount="6" aria-colcount="7"
+                aria-label="Daily scores calendar grid">
+                <!-- Calendar day cells dynamically injected here -->
+            </div>
+        </aside>
+
+        <!-- Main content sections -->
+        <section id="contentSections" class="flex flex-col space-y-24" style="flex-grow:1;">
+
+            <!-- Welcome Message -->
+            <section class="text-center max-w-4xl mx-auto space-y-3 animate-fadeIn" aria-label="Welcome message">
+                <h1
+                    class="welcomeMsg text-5xl font-extrabold text-gray-900 leading-tight tracking-tight drop-shadow-sm">
+                    Welcome, <span id="username" class="text-blue-600">User</span>!
+                </h1>
+                <p class="text-xl text-gray-500 max-w-3xl mx-auto font-semibold">
+                    Your journey is incomplete, let's achieve your goals together!
+                </p>
+            </section>
+
+            <!-- Healthy Lifestyle & Fitness Input Form -->
+            <section id="input" class="bg-white rounded-3xl shadow-xl p-10 max-w-4xl mx-auto animate-fadeIn"
+                aria-labelledby="input-title">
+                <h2 id="input-title" class="text-3xl font-semibold mb-8 text-gray-900">Daily Health & Fitness Input Form
+                </h2>
+                <form id="fitnessForm" class="grid grid-cols-1 gap-8 md:grid-cols-2" novalidate>
+                    <!-- Sleep Hours -->
+                    <div class="floating-label">
+                        <input type="number" id="sleepHours" name="sleepHours" placeholder=" " min="0" max="24"
+                            step="0.1" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="sleepHours">Sleep Hours (e.g., 7.5)</label>
+                    </div>
+
+                    <!-- Water Intake -->
+                    <div class="floating-label">
+                        <input type="number" id="waterLiters" name="waterLiters" placeholder=" " min="0" max="10"
+                            step="0.1" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="waterLiters">Water Intake (liters)</label>
+                    </div>
+
+                    <!-- Screen Time -->
+                    <div class="floating-label">
+                        <input type="number" id="screenTime" name="screenTime" placeholder=" " min="0" max="24"
+                            step="0.1" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="screenTime">Screen Time (hours)</label>
+                    </div>
+
+                    <!-- Gym/Exercise Time -->
+                    <div class="floating-label">
+                        <input type="number" id="gymTime" name="gymTime" placeholder=" " min="0" max="24" step="0.1"
+                            required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="gymTime">Gym / Exercise Time (hours)</label>
+                    </div>
+
+                    <!-- Meals Count -->
+                    <div class="floating-label">
+                        <input type="number" id="mealsCount" name="mealsCount" placeholder=" " min="0" max="10" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="mealsCount">Number of Meals</label>
+                    </div>
+
+                    <!-- Fruits/Vegetables Servings -->
+                    <div class="floating-label">
+                        <input type="number" id="fvServings" name="fvServings" placeholder=" " min="0" max="20" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="fvServings">Fruits & Vegetables Servings</label>
+                    </div>
+
+                    <!-- Steps Walked -->
+                    <div class="floating-label col-span-1 md:col-span-2">
+                        <input type="number" id="stepsWalked" name="stepsWalked" placeholder=" " min="0" max="100000"
+                            step="100" required
+                            class="w-full border border-gray-300 rounded-xl px-5 py-4 text-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-blue-500 transition" />
+                        <label for="stepsWalked">Steps Walked</label>
+                    </div>
+
+                    <!-- Submit Button spanning full width -->
+                    <div class="col-span-1 md:col-span-2">
+                        <button type="submit"
+                            class="w-full bg-blue-900 hover:bg-blue-700 focus-visible:outline-blue-400 text-white rounded-xl py-4 text-xl font-semibold transition shadow-lg">
+                            Calculate My Healthy Score
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Display Score Result -->
+                <div id="healthyScoreDisplay" class="mt-10 text-center hidden">
+                    <p class="text-4xl font-extrabold text-blue-700">Your Healthy Score:</p>
+                    <p id="healthyScoreValue" class="text-6xl font-bold text-blue-900 mt-3">0 / 100</p>
+                    <div class="w-full bg-gray-200 rounded-full h-8 max-w-xl mx-auto mt-4 overflow-hidden"
+                        aria-label="Healthy score progress bar">
+                        <div id="healthyScoreProgress"
+                            class="bg-blue-700 h-8 w-0 rounded-full transition-all duration-1000 ease-in-out"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Joinable Challenges Section -->
+            <section id="challenges" class="bg-white rounded-3xl shadow-xl p-10 max-w-3xl mx-auto animate-fadeIn"
+                aria-labelledby="challenges-title">
+                <h2 id="challenges-title" class="text-3xl font-semibold mb-8 text-gray-900">Join Challenges</h2>
+                <div class="flex flex-col gap-8" role="list">
+
+                    <article
+                        class="flex flex-col md:flex-row md:items-center md:justify-between border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                        role="listitem" tabindex="0" data-challenge="hydration">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">7-Day Hydration Challenge</h3>
+                            <p class="text-gray-600 mt-1 max-w-xl">
+                                Improve your health by drinking at least 2 liters of water daily for 7 days straight.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center space-x-4 mt-5 md:mt-0">
+                            <button data-challenge="hydration"
+                                class="join-btn bg-blue-700 hover:bg-blue-900 text-white font-semibold rounded-xl px-7 py-3 transition focus:outline-none focus:ring-4 focus:ring-blue-300"
+                                aria-pressed="false">
+                                Join Now
+                            </button>
+                            <span class="challenge-status hidden text-sm font-semibold text-blue-700" aria-live="polite"
+                                aria-atomic="true"></span>
+                        </div>
+                    </article>
+
+                    <article
+                        class="flex flex-col md:flex-row md:items-center md:justify-between border border-gray-200 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300"
+                        role="listitem" tabindex="0" data-challenge="mindfulness">
+                        <div>
+                            <h3 class="text-xl font-semibold text-gray-900">5-Day Mindfulness Challenge</h3>
+                            <p class="text-gray-600 mt-1 max-w-xl">
+                                Dedicate 10 minutes a day to meditation or mindful breathing for 5 consecutive days.
+                            </p>
+                        </div>
+
+                        <div class="flex items-center space-x-4 mt-5 md:mt-0">
+                            <button data-challenge="mindfulness"
+                                class="join-btn bg-blue-700 hover:bg-blue-900 text-white font-semibold rounded-xl px-7 py-3 transition focus:outline-none focus:ring-4 focus:ring-blue-300"
+                                aria-pressed="false">
+                                Join Now
+                            </button>
+                            <span class="challenge-status hidden text-sm font-semibold text-blue-700" aria-live="polite"
+                                aria-atomic="true"></span>
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <div id="logList" class="mt-10 max-w-xl mx-auto space-y-2">
+                <!-- Entries will be inserted here -->
+            </div>
+
+            <section class="bg-white rounded-3xl shadow-xl p-10 max-w-3xl mx-auto animate-fadeIn mt-10">
+                <h2 class="text-2xl font-bold text-gray-900 mb-4 text-center">Your Score History (Graph)</h2>
+                <canvas id="scoreChart" width="400" height="200"></canvas>
+            </section>
+
+            <!-- Achievements Badges Section -->
+            <section id="achievements" class="bg-white rounded-3xl shadow-xl p-10 max-w-3xl mx-auto animate-fadeIn"
+                aria-labelledby="achievements-title">
+                <h2 id="achievements-title" class="text-3xl font-semibold mb-8 text-gray-900 drop-shadow-md">
+                    Achievements Earned</h2>
+                <div id="badges" class="flex flex-wrap justify-center gap-10" aria-live="polite" aria-atomic="true"
+                    aria-relevant="additions">
+                    <!-- Badges will appear here dynamically -->
+                </div>
+            </section>
+
+        </section>
+    </main>
+
+    <script src="script.js">
+
+
+    </script>
+
+</body>
+
+</html>
